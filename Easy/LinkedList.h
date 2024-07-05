@@ -46,10 +46,25 @@ public:
         auto *head = new ListNode(-6);
         ListNode *currentNode = head;
         for (int i = -2; i < 5; ++i) {
-            auto *nextNode = new ListNode(2*i);
+            auto *nextNode = new ListNode(2 * i);
             currentNode->next = nextNode;
             currentNode = nextNode;
         }
+        return head;
+    }
+
+    static ListNode *hasCycle() {
+        ListNode *head = case2();
+        head->next = head;
+        // ListNode *node1 = head;
+        // for (int i = 0; i < 3; i++) {
+        //     node1 = node1->next;
+        // }
+        // ListNode *node2 = head;
+        // for (int i = 0; i < 5; i++) {
+        //     node2 = node2->next;
+        // }
+        // node2->next = node1;
         return head;
     }
 
@@ -95,6 +110,35 @@ public:
                 std::cout << "after reversing:" << std::endl;
                 printList(newHead);
             }
+        };
+    };
+
+    class Lc141 {
+    public:
+        class Solution {
+        public:
+            bool hasCycle(ListNode *head);
+        };
+
+        class Test {
+        public:
+            static void test1() {
+                Solution solution;
+                ListNode *head = hasCycle();
+                if (solution.hasCycle(head)) {
+                    std::cout << "This linked list has cycle." << std::endl;
+                } else {
+                    std::cout << "This linked list does not have cycle." << std::endl;
+                }
+            }
+        };
+    };
+
+    class Lc160 {
+    public:
+        class Solution {
+        public:
+            ListNode *getIntersectionNode(ListNode *headA, ListNode *headB);
         };
     };
 };
