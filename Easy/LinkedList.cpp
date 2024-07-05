@@ -3,6 +3,7 @@
 //
 
 #include "LinkedList.h"
+#include "map"
 
 LinkedList::ListNode *LinkedList::Lc206::Solution::reverseList(ListNode *head) {
     ListNode *currentNode = nullptr;
@@ -16,8 +17,8 @@ LinkedList::ListNode *LinkedList::Lc206::Solution::reverseList(ListNode *head) {
     return currentNode;
 }
 
-LinkedList::LinkedList::ListNode *LinkedList::Lc21::Solution::mergeTwoLists(ListNode *list1, ListNode *list2) {
-    ListNode *currentNode = new ListNode();
+LinkedList::ListNode *LinkedList::Lc21::Solution::mergeTwoLists(ListNode *list1, ListNode *list2) {
+    auto *currentNode = new ListNode();
     ListNode *currentList1 = list1;
     ListNode *currentList2 = list2;
     ListNode *head = currentNode;
@@ -42,4 +43,46 @@ LinkedList::LinkedList::ListNode *LinkedList::Lc21::Solution::mergeTwoLists(List
         currentList2 = currentList2->next;
     }
     return head->next;
+}
+
+bool LinkedList::Lc141::Solution::hasCycle(ListNode *head) {
+    if (head == nullptr || head->next == nullptr) {
+        return false;
+    }
+    ListNode *slowNode = head;
+    ListNode *fastNode = head->next;
+    while (slowNode != fastNode) {
+        if (fastNode == nullptr) {
+            return false;
+        }
+        slowNode = slowNode->next;
+        fastNode = fastNode->next;
+        if (fastNode == nullptr) {
+            return false;
+        }
+        fastNode = fastNode->next;
+    }
+    return true;
+}
+
+LinkedList::ListNode *LinkedList::Lc160::Solution::getIntersectionNode(ListNode *headA, ListNode *headB) {
+    if (headA == nullptr || headB == nullptr) {
+        return nullptr;
+    }
+    ListNode *pA = headA;
+    ListNode *pB = headB;
+    while (pA != pB) {
+        pA = pA->next;
+        pB = pB->next;
+        if (pA == pB) {
+            return pA;
+        }
+        if (pA == nullptr) {
+            pA = headB;
+        }
+        if (pB == nullptr) {
+            pB = headA;
+        }
+    }
+    return pA;
 }
