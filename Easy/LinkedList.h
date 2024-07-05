@@ -31,8 +31,26 @@ public:
         }
     }
 
-    ListNode * test1() {
+    static ListNode *case1() {
+        auto *head = new ListNode(0);
+        ListNode *currentNode = head;
+        for (int i = 1; i < 5; ++i) {
+            auto *nextNode = new ListNode(i);
+            currentNode->next = nextNode;
+            currentNode = nextNode;
+        }
+        return head;
+    }
 
+    static ListNode *case2() {
+        auto *head = new ListNode(-6);
+        ListNode *currentNode = head;
+        for (int i = -2; i < 5; ++i) {
+            auto *nextNode = new ListNode(2*i);
+            currentNode->next = nextNode;
+            currentNode = nextNode;
+        }
+        return head;
     }
 
     class Lc21 {
@@ -41,6 +59,22 @@ public:
         public:
             ListNode *mergeTwoLists(ListNode *list1, ListNode *list2);
         };
+
+        class Test {
+        public:
+            static void test1() {
+                Solution solution;
+                ListNode *list1 = case1();
+                ListNode *list2 = case2();
+                std::cout << "list1:" << std::endl;
+                printList(list1);
+                std::cout << "list2:" << std::endl;
+                printList(list2);
+                ListNode *res = solution.mergeTwoLists(list1, list2);
+                std::cout << "merge list1 and list2:" << std::endl;
+                printList(res);
+            }
+        };
     };
 
     class Lc206 {
@@ -48,6 +82,19 @@ public:
         class Solution {
         public:
             ListNode *reverseList(ListNode *head);
+        };
+
+        class Test {
+        public:
+            static void test1() {
+                Solution solution;
+                ListNode *head = case1();
+                std::cout << "original list:" << std::endl;
+                printList(head);
+                ListNode *newHead = solution.reverseList(head);
+                std::cout << "after reversing:" << std::endl;
+                printList(newHead);
+            }
         };
     };
 };
