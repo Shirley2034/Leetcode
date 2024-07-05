@@ -4,7 +4,7 @@
 
 #include "LinkedList.h"
 
-ListNode *Lc206::Solution::reverseList(ListNode *head) {
+LinkedList::ListNode *LinkedList::Lc206::Solution::reverseList(ListNode *head) {
     ListNode *currentNode = nullptr;
     ListNode *nextNode = head;
     while (nextNode) {
@@ -16,7 +16,7 @@ ListNode *Lc206::Solution::reverseList(ListNode *head) {
     return currentNode;
 }
 
-ListNode *Lc21::Solution::mergeTwoLists(ListNode *list1, ListNode *list2) {
+LinkedList::ListNode *LinkedList::Lc21::Solution::mergeTwoLists(ListNode *list1, ListNode *list2) {
     ListNode *currentNode = nullptr;
     ListNode *currentList1 = list1;
     ListNode *currentList2 = list2;

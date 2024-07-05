@@ -7,37 +7,48 @@
 
 #include "iostream"
 
-struct ListNode {
-    int val;
-    ListNode *next;
-
-    ListNode() : val(0), next(nullptr) {}
-
-    ListNode(int x) : val(x), next(nullptr) {}
-
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
-
-};
-
-void print(ListNode *node) {
-    while (node) {
-        std::cout << node->val << std::endl;
-        node = node->next;
-    }
-}
-
-class Lc21{
+class LinkedList {
 public:
-    class Solution {
-    public:
-        ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) ;
+    struct ListNode {
+        int val;
+        ListNode *next;
+
+        ListNode() : val(0), next(nullptr) {
+        }
+
+        explicit ListNode(int x) : val(x), next(nullptr) {
+        }
+
+        ListNode(int x, ListNode *next) : val(x), next(next) {
+        }
     };
-};
-class Lc206 {
-public:
-    class Solution {
+
+    static void printList(ListNode *node) {
+        ListNode *currentNode = node;
+        while (currentNode) {
+            std::cout << currentNode->val << std::endl;
+            currentNode = currentNode->next;
+        }
+    }
+
+    ListNode * test1() {
+
+    }
+
+    class Lc21 {
     public:
-        ListNode *reverseList(ListNode *head);
+        class Solution {
+        public:
+            ListNode *mergeTwoLists(ListNode *list1, ListNode *list2);
+        };
+    };
+
+    class Lc206 {
+    public:
+        class Solution {
+        public:
+            ListNode *reverseList(ListNode *head);
+        };
     };
 };
 
