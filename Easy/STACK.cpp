@@ -2,9 +2,9 @@
 // Created by shirleyz on 2024/7/5.
 //
 
-#include "Stock.h"
+#include "STACK.h"
 
-int Stock::Lc121::Solution::maxProfit(std::vector<int> &prices) {
+int STACK::Lc121::Solution::maxProfit(std::vector<int> &prices) {
     int res = 0;
     if (prices.empty()) {
         return res;
@@ -20,7 +20,7 @@ int Stock::Lc121::Solution::maxProfit(std::vector<int> &prices) {
     return res;
 }
 
-int Stock::Lc122::Solution::maxProfit(const std::vector<int> &prices) {
+int STACK::Lc122::Solution::maxProfit(const std::vector<int> &prices) {
     int res = 0;
     if (prices.empty()) {
         return res;

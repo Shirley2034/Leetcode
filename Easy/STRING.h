@@ -12,6 +12,44 @@
 
 class STRING {
 public:
+    class Cases {
+    public:
+        std::vector<std::string> case1() {
+            std::vector<std::string> case1 = {"flower", "flow", "flight"};
+            std::cout << "strings are as follows: " << std::endl;
+            for (std::string &str: case1) {
+                std::cout << str << " ";
+            }
+            std::cout << std::endl;
+            return case1;
+        }
+
+        std::vector<std::string> case2() {
+            std::vector<std::string> case1 = {"ra","racecar","car"};
+            std::cout << "strings are as follows: " << std::endl;
+            for (std::string &str: case1) {
+                std::cout << str << " ";
+            }
+            std::cout << std::endl;
+            return case1;
+        }
+    };
+
+    class Lc14 {
+    public:
+        class Solution {
+        public:
+            std::string longestCommonPrefix(std::vector<std::string> &strs);
+
+            void test1() {
+                Cases cases;
+                std::vector<std::string> s1 = cases.case2();
+                std::string res = longestCommonPrefix(s1);
+                std::cout << "The longest common prefix is " << res << std::endl;
+            }
+        };
+    };
+
     class Lc415 {
     public:
         class Solution {

@@ -5,6 +5,7 @@
 #ifndef LC_LINKEDLIST_H
 #define LC_LINKEDLIST_H
 
+#include <vector>
 #include "iostream"
 
 class LinkedList {
@@ -53,6 +54,20 @@ public:
         return head;
     }
 
+    static ListNode *generateLinkedListByVec(std::vector<int> &inputVec) {
+        if (inputVec.empty()) {
+            return nullptr;
+        }
+        ListNode *head = new ListNode(inputVec[0]);
+        ListNode *currentNode = head;
+        for (int i = 1; i < inputVec.size(); i++) {
+            ListNode *nextNode = new ListNode(inputVec[i]);
+            currentNode->next = nextNode;
+            currentNode = nextNode;
+        }
+        return head;
+    }
+
     static ListNode *hasCycle() {
         ListNode *head = case2();
         head->next = head;
@@ -89,6 +104,15 @@ public:
                 std::cout << "merge list1 and list2:" << std::endl;
                 printList(res);
             }
+        };
+    };
+
+
+    class Lc140 {
+    public:
+        class Solution {
+        public:
+            ListNode *trainingPlan(ListNode *head, int cnt);
         };
     };
 
@@ -141,6 +165,48 @@ public:
             ListNode *getIntersectionNode(ListNode *headA, ListNode *headB);
         };
     };
+
+    class Lc234 {
+    public:
+        class Solution {
+            ListNode *reverseLinkedList(ListNode *head) {
+                ListNode *nextNode = nullptr;
+                ListNode *currentNode = head;
+                while (currentNode != nullptr) {
+                    ListNode *temp = currentNode->next;
+                    currentNode->next = nextNode;
+                    nextNode = currentNode;
+                    currentNode = temp;
+                }
+                return nextNode;
+            }
+
+        public:
+            bool isPalindrome(ListNode *head) {
+                ListNode *anotherHead = reverseLinkedList(head);
+                while (head != nullptr) {
+                    if (head->val == anotherHead->val) {
+                        head = head->next;
+                        anotherHead = anotherHead->next;
+                    } else {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        };
+
+        class Test{
+        public:
+            void test1(){
+                std::vector<int> inputVec={1,1,2,1};
+                Solution solution;
+                ListNode*head= generateLinkedListByVec(inputVec);
+                printList(head);
+            }
+        };
+    };
+
 };
 
 

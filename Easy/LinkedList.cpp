@@ -65,6 +65,19 @@ bool LinkedList::Lc141::Solution::hasCycle(ListNode *head) {
     return true;
 }
 
+LinkedList::ListNode *LinkedList::Lc140::Solution::trainingPlan(LinkedList::ListNode *head, int cnt) {
+    ListNode *formerNode = head;
+    ListNode *latterNode = head;
+    for (int i = 0; i < cnt; i++) {
+        formerNode = formerNode->next;
+    }
+    while (formerNode) {
+        latterNode = latterNode->next;
+        formerNode = formerNode->next;
+    }
+    return latterNode;
+}
+
 LinkedList::ListNode *LinkedList::Lc160::Solution::getIntersectionNode(ListNode *headA, ListNode *headB) {
     if (headA == nullptr || headB == nullptr) {
         return nullptr;
