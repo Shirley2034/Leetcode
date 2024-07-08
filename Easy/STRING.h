@@ -6,6 +6,8 @@
 #define STRING_H
 
 #include <iostream>
+#include <map>
+#include <set>
 
 #include "string"
 #include "random"
@@ -25,7 +27,7 @@ public:
         }
 
         std::vector<std::string> case2() {
-            std::vector<std::string> case1 = {"ra","racecar","car"};
+            std::vector<std::string> case1 = {"ra", "racecar", "car"};
             std::cout << "strings are as follows: " << std::endl;
             for (std::string &str: case1) {
                 std::cout << str << " ";
@@ -33,6 +35,36 @@ public:
             std::cout << std::endl;
             return case1;
         }
+    };
+
+    class Lc3 {
+    public:
+        class Solution {
+        public:
+            int lengthOfLongestSubstring(std::string s) {
+                int left = 0;
+                int right = 0;
+                int res = 0;
+                std::set<char> charSet;
+                while (right < s.size()) {
+                    if (charSet.find(s[right]) != charSet.end()) {
+                        res = std::max(res, right - left);
+                        while (s[left] != s[right] && left < right) {
+                            charSet.erase(s[left]);
+                            left++;
+                        }
+                        charSet.erase(s[left]);
+                        left++;
+                    }
+                    charSet.insert(s[right]);
+                    right++;
+                }
+                if (left <= right) {
+                    res = std::max(res, right - left);
+                }
+                return res;
+            }
+        };
     };
 
     class Lc14 {

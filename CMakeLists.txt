@@ -13,4 +13,6 @@ add_executable(lc main.cpp
         Easy/TREE.cpp
         Easy/TREE.h
         Easy/STRING.cpp
+        Easy/STRING.h
+        Medium/STRUCT.h
 )
