@@ -107,6 +107,33 @@ public:
         };
     };
 
+    class Lc82 {
+    public:
+        class Solution {
+        public:
+            ListNode *deleteDuplicates(ListNode *head) {
+                auto *newHead = new ListNode();
+                ListNode *res = newHead;
+                while (head != nullptr) {
+                    bool isDuplicate = false;
+                    int nodeVal = head->val;
+                    while (head->next != nullptr && head->next->val == nodeVal) {
+                        head = head->next;
+                        isDuplicate = true;
+                    }
+                    //如果是重复节点，需要删除；如果不是重复节点，则添加
+                    if (!isDuplicate) {
+                        newHead->next = head;
+                        newHead = newHead->next;
+                    }
+                    head = head->next;
+                }
+                newHead->next= nullptr;
+                return res->next;
+            }
+        };
+    };
+
 
     class Lc140 {
     public:
@@ -196,12 +223,12 @@ public:
             }
         };
 
-        class Test{
+        class Test {
         public:
-            void test1(){
-                std::vector<int> inputVec={1,1,2,1};
+            void test1() {
+                std::vector<int> inputVec = {1, 1, 2, 1};
                 Solution solution;
-                ListNode*head= generateLinkedListByVec(inputVec);
+                ListNode *head = generateLinkedListByVec(inputVec);
                 printList(head);
             }
         };

@@ -73,9 +73,14 @@ int main() {
     // for(std::string &ele:res) {
     //     std::cout<<ele<<std::endl;
     // }
-    std::string text1 = "spqrs";
-    std::string text2 = "sqrp";
-    STRING::Lc1143::Solution solution;
-    std::cout << solution.longestCommonSubsequence(text1, text2) << std::endl;
+//    std::string text1 = "spqrs";
+//    std::string text2 = "sqrp";
+//    STRING::Lc1143::Solution solution;
+//    std::cout << solution.longestCommonSubsequence(text1, text2) << std::endl;
+    LinkedList::Lc82::Solution solution;
+    std::vector<int> case1 = {1, 2,2};
+    LinkedList::ListNode *head = LinkedList::generateLinkedListByVec(case1);
+    LinkedList::ListNode *newHead = solution.deleteDuplicates(head);
+    LinkedList::printList(newHead);
     return 0;
 }
