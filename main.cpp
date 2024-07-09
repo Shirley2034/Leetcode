@@ -6,6 +6,7 @@
 #include "Easy/STRING.h"
 #include "Easy/TREE.h"
 #include "Easy/MATH.h"
+#include "Medium/MATRIX.h"
 #include "Medium/STRUCT.h"
 
 int main() {
@@ -48,13 +49,33 @@ int main() {
     // STRING::Lc3::Solution solution;
     // std::string s = "abdbcde";
     // std::cout << solution.lengthOfLongestSubstring(s) << std::endl;
-    std::vector<std::vector<char> > grid = {
-        {'1', '1', '0', '1', '0'},
-        {'1', '1', '0', '0', '0'},
-        {'0', '0', '0', '1', '0'},
-        {'0', '0', '1', '0', '1'}
-    };
-    STRUCT::Lc200 solution;
-    std::cout << solution.numIslands(grid) << std::endl;
+    // std::vector<std::vector<char> > grid = {
+    //     {'1', '1', '0', '1', '0'},
+    //     {'1', '1', '0', '0', '0'},
+    //     {'0', '0', '0', '1', '0'},
+    //     {'0', '0', '1', '0', '1'}
+    // };
+    // STRUCT::Lc200 solution;
+    // std::cout << solution.numIslands(grid) << std::endl;
+    // std::vector<std::vector<int> > m = {{1}, {5}};
+    // MATRIX::Lc54::Solution solution;
+    // std::vector<int> res = solution.spiralOrder(m);
+    // for (const int &num: res) {
+    //     std::cout << num << ",";
+    // }
+    // std::cout << std::endl;
+    // TREE::Cases cases;
+    // TREE::Lc226::Solution solution;
+    // TREE::TreeNode *root = solution.invertTree(cases.case4());
+    // std::string s = "101023";
+    // STRING::Lc93::Solution solution;
+    // std::vector<std::string> res = solution.restoreIpAddresses(s);
+    // for(std::string &ele:res) {
+    //     std::cout<<ele<<std::endl;
+    // }
+    std::string text1 = "spqrs";
+    std::string text2 = "sqrp";
+    STRING::Lc1143::Solution solution;
+    std::cout << solution.longestCommonSubsequence(text1, text2) << std::endl;
     return 0;
 }

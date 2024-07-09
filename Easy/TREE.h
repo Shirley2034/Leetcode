@@ -86,13 +86,15 @@ public:
         TreeNode *case4() {
             auto *root = new TreeNode(4);
             auto *left = new TreeNode(2);
-            auto *left1 = new TreeNode(1);
-            auto *right1 = new TreeNode(3);
-            auto *right = new TreeNode(2);
+            auto *left1 = new TreeNode(6);
+            auto *right1 = new TreeNode(8);
+            auto *left2 = new TreeNode(10);
+            auto *right2 = new TreeNode(11);
+            auto *right = new TreeNode(3);
             left->left = left1;
             left->right = right1;
-            right->left = right1;
-            right->right = left1;
+            right->left = right2;
+            right->right = left2;
             root->left = left;
             root->right = right;
             std::cout << "    " << root->val << "  " << std::endl;
@@ -100,8 +102,8 @@ public:
             std::cout << "  " << root->left->val << "    " << root->right->val << std::endl;
             std::cout << " / \\   / \\" << std::endl;
             std::cout << left->left->val << "   " << left->right->val << "  " << right->left->val << "  "
-                      << right->right->val
-                      << std::endl;
+                    << right->right->val
+                    << std::endl;
             return root;
         }
 
@@ -119,7 +121,7 @@ public:
             std::cout << "  " << root->left->val << std::endl;
             std::cout << " / \\" << std::endl;
             std::cout << left->left->val << "   " << left->right->val
-                      << std::endl;
+                    << std::endl;
             return root;
         }
 
@@ -148,11 +150,11 @@ public:
             std::cout << "     " << root->right->left->val << "   " << root->right->right->val << std::endl;
             std::cout << "      /     \\" << std::endl;
             std::cout << "     " << root->right->left->left->val << "       " << root->right->right->right->val
-                      << std::endl;
+                    << std::endl;
             std::cout << "      \\     /" << std::endl;
             std::cout << "       " << root->right->left->left->right->val << "   "
-                      << root->right->right->right->left->val
-                      << std::endl;
+                    << root->right->right->right->left->val
+                    << std::endl;
             return root;
         }
     };
@@ -257,7 +259,7 @@ public:
             TreeNode *sortedArrayToBST(std::vector<int> &nums) {
                 int left = 0;
                 int right = nums.size() - 1;
-                TreeNode *root = new TreeNode(nums[(left +right) / 2]);
+                TreeNode *root = new TreeNode(nums[(left + right) / 2]);
                 std::queue<TreeNode *> Q;
                 std::queue<int> leftQ;
                 std::queue<int> rightQ;
@@ -314,6 +316,22 @@ public:
 
         public:
             bool hasPathSum(TreeNode *root, int targetSum);
+        };
+    };
+
+    class Lc226 {
+    public:
+        class Solution {
+        public:
+            TreeNode *invertTree(TreeNode *root) {
+                if (root == nullptr) {
+                    return nullptr;
+                }
+                TreeNode *node = root->left;
+                root->left = invertTree(root->right);
+                root->right = invertTree(node);
+                return root;
+            }
         };
     };
 
