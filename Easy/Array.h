@@ -101,7 +101,7 @@ public:
     public:
         class Solution {
         public:
-            bool searchMatrix(std::vector<std::vector<int>> &matrix, int target) {
+            bool searchMatrix(std::vector<std::vector<int> > &matrix, int target) {
                 int rowFirst = 0;
                 int rowEnd = matrix.size() - 1;
                 while (rowFirst <= rowEnd) {
@@ -163,6 +163,28 @@ public:
                 }
             }
         };
+    };
+
+    class Lc283 {
+    public:
+        void moveZeroes(std::vector<int> &nums) {
+            int insertLocation = 0;
+            int currentLocation = 0;
+            while (currentLocation < nums.size()) {
+                while (currentLocation < nums.size() && nums[currentLocation] == 0) {
+                    currentLocation++;
+                }
+                if (currentLocation < nums.size()) {
+                    nums[insertLocation] = nums[currentLocation];
+                    insertLocation++;
+                    currentLocation++;
+                }
+            }
+            while (insertLocation < nums.size()) {
+                nums[insertLocation] = 0;
+                insertLocation++;
+            }
+        }
     };
 
     class Lc704 {

@@ -159,6 +159,73 @@ public:
         }
     };
 
+    class Lc50 {
+    public:
+        class Solution {
+            int rootPathSum(TreeNode *root, long long targetSum) {
+                // 计算从根节点root出发的所有路径总和
+                int pathSum = 0;
+                if (root == nullptr) {
+                    return pathSum;
+                }
+                std::queue<TreeNode *> Q;
+                std::queue<long long> targetQ;
+                Q.push(root);
+                targetQ.push(targetSum);
+                while (!Q.empty()) {
+                    int s = Q.size();
+                    while (s > 0) {
+                        TreeNode *parent = Q.front();
+                        long long target = targetQ.front();
+                        Q.pop();
+                        targetQ.pop();
+                        if (parent->val == target) {
+                            pathSum++;
+                        }
+                        if (parent->left != nullptr) {
+                            Q.push(parent->left);
+                            targetQ.push(target - parent->val);
+                        }
+                        if (parent->right != nullptr) {
+                            Q.push(parent->right);
+                            targetQ.push(target - parent->val);
+                        }
+                        s--;
+                    }
+                }
+                return pathSum;
+            }
+
+        public:
+            int pathSum(TreeNode *root, int targetSum) {
+                int sum = 0;
+                if (root == nullptr) {
+                    return sum;
+                }
+                std::queue<TreeNode *> Q;
+                Q.push(root);
+                // 层序遍历所有节点
+                while (!Q.empty()) {
+                    int s = Q.size();
+                    while (s > 0) {
+                        TreeNode *parent = Q.front();
+                        Q.pop();
+                        // 计算以parent为起点的路径总和
+                        sum += rootPathSum(parent, targetSum);
+                        if (parent->left != nullptr) {
+                            Q.push(parent->left);
+                        }
+                        if (parent->right != nullptr) {
+                            Q.push(parent->right);
+                        }
+                        s--;
+                    }
+                }
+                return sum;
+            }
+        };
+    };
+
 
     class Lc94 {
     public:

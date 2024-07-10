@@ -73,14 +73,24 @@ int main() {
     // for(std::string &ele:res) {
     //     std::cout<<ele<<std::endl;
     // }
-//    std::string text1 = "spqrs";
-//    std::string text2 = "sqrp";
-//    STRING::Lc1143::Solution solution;
-//    std::cout << solution.longestCommonSubsequence(text1, text2) << std::endl;
-    LinkedList::Lc82::Solution solution;
-    std::vector<int> case1 = {1, 2,2};
-    LinkedList::ListNode *head = LinkedList::generateLinkedListByVec(case1);
-    LinkedList::ListNode *newHead = solution.deleteDuplicates(head);
-    LinkedList::printList(newHead);
+    //    std::string text1 = "spqrs";
+    //    std::string text2 = "sqrp";
+    //    STRING::Lc1143::Solution solution;
+    //    std::cout << solution.longestCommonSubsequence(text1, text2) << std::endl;
+    // LinkedList::Lc82::Solution solution;
+    // std::vector<int> case1 = {1, 2,2};
+    // LinkedList::ListNode *head = LinkedList::generateLinkedListByVec(case1);
+    // LinkedList::ListNode *newHead = solution.deleteDuplicates(head);
+    // LinkedList::printList(newHead);
+    // TREE::Cases cases;
+    // TREE::TreeNode *root = cases.case6();
+    // TREE::Lc50::Solution solution;
+    // std::cout << solution.pathSum(root, 0) << std::endl;
+    std::vector<int> nums = {0,1,2};
+    Array::Lc283 solution;
+    solution.moveZeroes(nums);
+    for (const int &num: nums) {
+        std::cout << num << ",";
+    }
     return 0;
 }
