@@ -6,6 +6,7 @@
 #define ARRAY_H
 
 #include <iostream>
+#include <map>
 #include <queue>
 
 #include "vector"
@@ -165,6 +166,46 @@ public:
         };
     };
 
+    class Lc215 {
+    public:
+        class Solution {
+            void maxHeapify(std::vector<int>& nums, int start, int end) {
+                int parent = start;
+                int child = 2 * parent + 1;
+                while (child <= end) {
+                    if (child + 1 <= end && nums[child + 1] > nums[child]) {
+                        child++;
+                    }
+                    if (nums[parent] >= nums[child]) {
+                        return;
+                    }
+                    int ans = nums[child];
+                    nums[child] = nums[parent];
+                    nums[parent] = ans;
+                    parent = child;
+                    child = 2 * parent + 1;
+                }
+            }
+
+        public:
+            int findKthLargest(std::vector<int>& nums, int k) {
+                int len = nums.size();
+                for (int i = len / 2 - 1; i >= 0; i--) {
+                    maxHeapify(nums, i, len - 1);
+                }
+                int j = 1;
+                while (k > 1) {
+                    int ans = nums[0];
+                    nums[0] = nums[len - j];
+                    nums[len - j] = ans;
+                    j++;
+                    maxHeapify(nums, 0, len - j);
+                    k--;
+                }
+                return nums[0];
+            }
+        };
+    };
     class Lc283 {
     public:
         void moveZeroes(std::vector<int> &nums) {

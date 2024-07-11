@@ -155,6 +155,94 @@ public:
             return num;
         };
     };
+
+    class Lc146_2 {
+    public:
+        class LRUCache {
+            struct DLinkedNode {
+                int key;
+                int value;
+                DLinkedNode *prev;
+                DLinkedNode *next;
+
+                DLinkedNode(): key(0), value(0), prev(nullptr), next(nullptr) {
+                }
+
+                DLinkedNode(int k, int v): key(k), value(v), prev(nullptr), next(nullptr) {
+                }
+            };
+
+            int size;
+            int capacity;
+            std::map<int, DLinkedNode *> cacheMap;
+            DLinkedNode *head;
+            DLinkedNode *tail;
+
+        public:
+            LRUCache(int capacity): capacity(capacity), size(0) {
+                head = new DLinkedNode();
+                tail = new DLinkedNode();
+                head->next = tail;
+                tail->prev = head;
+            }
+
+            int get(int key) {
+                auto it = cacheMap.find(key);
+                if (it == cacheMap.end()) {
+                    return -1;
+                }
+                //将当前节点加移动头节点
+                moveToHead(it->second);
+                return cacheMap[key]->value;
+            }
+
+            void put(int key, int value) {
+                //首先判断key是否存在
+                auto it = cacheMap.find(key);
+                if (it == cacheMap.end()) {
+                    //key不存在则添加到哈希表中
+                    auto *node = new DLinkedNode(key, value);
+                    cacheMap[key] = node;
+                    addToHead(node);
+                    size++;
+                    if (size > capacity) {
+                        //超出缓存，删除尾节点
+                        removeTail();
+                        size--;
+                    }
+                } else {
+                    //更新节点值
+                    cacheMap[key]->value = value;
+                    //更新头节点
+                    moveToHead(cacheMap[key]);
+                }
+            }
+
+            void addToHead(DLinkedNode *node) {
+                head->next->prev = node;
+                node->next = head->next;
+                head->next = node;
+                node->prev = head;
+            }
+
+            void moveToHead(DLinkedNode *node) {
+                node->prev->next = node->next;
+                node->next->prev = node->prev;
+                head->next->prev = node;
+                node->next = head->next;
+                node->prev = head;
+                head->next = node;
+            }
+
+            void removeTail() {
+                DLinkedNode *node = tail->prev;
+                node->prev->next = tail;
+                tail->prev = node->prev;
+                cacheMap.erase(node->key);
+                delete node;
+            }
+        };
+    };
 };
 
 

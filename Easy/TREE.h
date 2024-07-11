@@ -6,6 +6,7 @@
 #define TREE_H
 
 #include <iostream>
+#include <map>
 #include <queue>
 
 #include "vector"
@@ -132,11 +133,11 @@ public:
             root->left = left;
             root->right = right;
             auto *left1 = new TreeNode(-9);
-            auto *right1 = new TreeNode(-3);
+            auto *right1 = new TreeNode(3);
             right->left = left1;
-            right->right = right1;
             left = new TreeNode(1);
             left1->left = left;
+            right->right = right1;
             right = new TreeNode(2);
             right1->right = right;
             left1 = new TreeNode(3);

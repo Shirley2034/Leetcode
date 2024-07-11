@@ -85,12 +85,9 @@ int main() {
     // TREE::Cases cases;
     // TREE::TreeNode *root = cases.case6();
     // TREE::Lc50::Solution solution;
-    // std::cout << solution.pathSum(root, 0) << std::endl;
-    std::vector<int> nums = {0,1,2};
-    Array::Lc283 solution;
-    solution.moveZeroes(nums);
-    for (const int &num: nums) {
-        std::cout << num << ",";
-    }
+    // std::cout << solution.pathSum(root, 4) << std::endl;
+    std::vector<int> nums = {3, 2, 3, 1, 2, 4, 5, 5, 6};
+    Array::Lc215::Solution solution;
+    std::cout << solution.findKthLargest(nums, 4);
     return 0;
 }
