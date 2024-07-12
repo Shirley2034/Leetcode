@@ -225,6 +225,56 @@ public:
                 return sum;
             }
         };
+
+        class Solution2 {
+            int dfs(TreeNode *node, long long curr, std::map<long long, int> hashMap,
+                    int &targetSum) {
+                if (node == nullptr) {
+                    return 0;
+                }
+                curr += node->val;
+                int pathSum = 0;
+                auto it = hashMap.find(curr - targetSum);
+                // 判断从节点p_{k+1}到节点node的路径是否为目标路径
+                if (it != hashMap.end()) {
+                    pathSum = it->second;
+                }
+                // 判断从根节点root到node的路径是否为目标路径
+                if (curr == targetSum) {
+                    pathSum++;
+                }
+                it = hashMap.find(curr);
+                if (it == hashMap.end()) {
+                    hashMap[curr] = 1;
+                } else {
+                    hashMap[curr] += 1;
+                }
+                if (node->left != nullptr) {
+                    pathSum += dfs(node->left, curr, hashMap, targetSum);
+                }
+                if (node->right != nullptr) {
+                    pathSum += dfs(node->right, curr, hashMap, targetSum);
+                }
+                return pathSum;
+            }
+
+        public:
+            int pathSum(TreeNode *root, int targetSum) {
+                if (root == nullptr) {
+                    return 0;
+                }
+                long long curr = root->val;
+                int pathSum = 0;
+                if (curr == targetSum) {
+                    pathSum++;
+                }
+                std::map<long long, int> hashMap;
+                hashMap[curr] = 1;
+                pathSum += dfs(root->left, curr, hashMap, targetSum);
+                pathSum += dfs(root->right, curr, hashMap, targetSum);
+                return pathSum;
+            }
+        };
     };
 
 

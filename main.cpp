@@ -84,10 +84,29 @@ int main() {
     // LinkedList::printList(newHead);
     // TREE::Cases cases;
     // TREE::TreeNode *root = cases.case6();
-    // TREE::Lc50::Solution solution;
-    // std::cout << solution.pathSum(root, 4) << std::endl;
-    std::vector<int> nums = {3, 2, 3, 1, 2, 4, 5, 5, 6};
-    Array::Lc215::Solution solution;
-    std::cout << solution.findKthLargest(nums, 4);
+    // TREE::Lc50::Solution2 solution;
+    // std::cout << solution.pathSum(root, 2) << std::endl;
+    // std::vector<int> nums = {3, 2, 3, 1, 2, 4, 5, 5, 6};
+    // Array::Lc215::Solution solution;
+    // std::cout << solution.findKthLargest(nums, 4);
+    // LinkedList::Lc23::Solution solution;
+    // std::vector v1 = {1, 3, 5};
+    // LinkedList::ListNode *head1 = LinkedList::generateLinkedListByVec(v1);
+    // std::vector v2 = {-1, 3};
+    // LinkedList::ListNode *head2 = LinkedList::generateLinkedListByVec(v2);
+    // std::vector v3 = {2, 6};
+    // LinkedList::ListNode *head3 = LinkedList::generateLinkedListByVec(v3);
+    // std::vector<LinkedList::ListNode *> lists = {head1, head2, head3};
+    // LinkedList::ListNode *newHead = solution.mergeKLists(lists);
+    // LinkedList::printList(newHead);
+    std::vector<int> v1 = {1, 2, 3};
+    Array::Lc46::Solution solution;
+    std::vector<std::vector<int> > res = solution.permute(v1);
+    for (auto &v: res) {
+        for (const int &num: v) {
+            std::cout << num << ",";
+        }
+        std::cout << std::endl;
+    }
     return 0;
 }

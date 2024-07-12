@@ -107,6 +107,80 @@ public:
         };
     };
 
+    class Lc23 {
+    public:
+        class Solution {
+            void minHeapify(std::vector<ListNode *> &lists, int start, int end) {
+                int parent = start;
+                int child = 2 * parent + 1;
+                while (child <= end) {
+                    //找到左右孩子中值最小的那个
+                    if (child + 1 <= end && lists[child]->val > lists[child + 1]->val) {
+                        child++;
+                    }
+                    //如果父节点的值比孩子节点小，那么结束比较
+                    if (lists[parent]->val < lists[child]->val) {
+                        return;
+                    }
+                    //否则交换父节点和孩子节点的值
+                    ListNode *node = lists[parent];
+                    lists[parent] = lists[child];
+                    lists[child] = node;
+                    parent = child;
+                    child = 2 * parent + 1;
+                }
+            }
+
+        public:
+            ListNode *mergeKLists(std::vector<ListNode *> &lists) {
+                std::vector<ListNode *> currentList;
+                //确保没有空节点
+                for (ListNode *node: lists) {
+                    if (node != nullptr) {
+                        currentList.push_back(node);
+                    }
+                }
+                int len = currentList.size();
+                if (len == 0) {
+                    return nullptr;
+                }
+                //建立小根堆
+                for (int i = len / 2 - 1; i >= 0; i--) {
+                    minHeapify(currentList, i, len - 1);
+                }
+                //创建一个哑节点，连接头节点
+                auto *prevNode = new ListNode();
+                //此时currentList[0]的值最小
+                int end = len - 1;
+                ListNode *head = currentList[0];
+                prevNode->next = head;
+                while (end >= 0) {
+                    if (head->next != nullptr) {
+                        currentList[0] = head->next;
+                        //维护小根堆
+                        minHeapify(currentList, 0, end);
+                        //更新头节点
+                        head->next = currentList[0];
+                        head = head->next;
+                    } else {
+                        //交换头尾元素
+                        ListNode *node = currentList[0];
+                        currentList[0] = currentList[end];
+                        currentList[end] = node;
+                        end--;
+                        if (end >= 0) {
+                            //维护小根堆
+                            minHeapify(currentList, 0, end);
+                            head->next = currentList[0];
+                            head = head->next;
+                        }
+                    }
+                }
+                return prevNode->next;
+            }
+        };
+    };
+
     class Lc82 {
     public:
         class Solution {
@@ -128,7 +202,7 @@ public:
                     }
                     head = head->next;
                 }
-                newHead->next= nullptr;
+                newHead->next = nullptr;
                 return res->next;
             }
         };
@@ -233,7 +307,6 @@ public:
             }
         };
     };
-
 };
 
 

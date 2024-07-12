@@ -98,6 +98,36 @@ public:
         };
     };
 
+    class Lc46 {
+    public:
+        class Solution {
+            std::vector<std::vector<int> > res;
+
+            void dfs(std::vector<int> &nums, std::vector<bool> visited,
+                     std::vector<int> currNums) {
+                for (int i = 0; i < nums.size(); ++i) {
+                    if (!visited[i]) {
+                        currNums.push_back(nums[i]);
+                        visited[i] = true;
+                        dfs(nums, visited, currNums);
+                    }
+                }
+                res.push_back(currNums);
+            }
+
+        public:
+            std::vector<std::vector<int> > permute(std::vector<int> &nums) {
+                for (int i = 0; i < nums.size(); i++) {
+                    std::vector<bool> visited(nums.size(), false);
+                    visited[i] = true;
+                    std::vector<int> currNums = {nums[i]};
+                    dfs(nums, visited, currNums);
+                }
+                return res;
+            }
+        };
+    };
+
     class Lc74 {
     public:
         class Solution {
@@ -169,7 +199,7 @@ public:
     class Lc215 {
     public:
         class Solution {
-            void maxHeapify(std::vector<int>& nums, int start, int end) {
+            void maxHeapify(std::vector<int> &nums, int start, int end) {
                 int parent = start;
                 int child = 2 * parent + 1;
                 while (child <= end) {
@@ -188,7 +218,7 @@ public:
             }
 
         public:
-            int findKthLargest(std::vector<int>& nums, int k) {
+            int findKthLargest(std::vector<int> &nums, int k) {
                 int len = nums.size();
                 for (int i = len / 2 - 1; i >= 0; i--) {
                     maxHeapify(nums, i, len - 1);
@@ -206,6 +236,7 @@ public:
             }
         };
     };
+
     class Lc283 {
     public:
         void moveZeroes(std::vector<int> &nums) {
